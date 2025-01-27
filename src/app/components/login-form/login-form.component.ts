@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
+  title = 'Authentication'
 
 }
