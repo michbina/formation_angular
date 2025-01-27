@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { FormsModule } from '@angular/forms'
 import { LoginFormComponent } from './components/login-form/login-form.component'
 import { RouterOutlet } from '@angular/router'
 
