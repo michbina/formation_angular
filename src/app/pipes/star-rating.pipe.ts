@@ -7,20 +7,20 @@ export class StarRatingPipe implements PipeTransform {
 
   transform(metascore:string | undefined): string {
     if(!metascore) {
-      return ''
+      return '';
     }
     if (+metascore<20) {
-      return '★'
+      return '★';
     }else if (+metascore<40) {
-       return '★'
+       return '★';
     }else if (+metascore<60) {
-      return '★★★'
+      return '★★★';
     }else if (+metascore<80) {
-      return '★★★★'
+      return '★★★★';
     }else if (+metascore<100) {
-      return '★★★★★'
+      return '★★★★★';
     }else {
-      return 'no rating'
+      return 'no rating';
     }
   }
 

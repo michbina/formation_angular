@@ -112,7 +112,7 @@ module.exports = tseslint.config(
       "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
       "@typescript-eslint/no-var-requires": "error",
       "@typescript-eslint/restrict-plus-operands": "error",
-      "@/semi": ["error", "never"],
+      "@/semi": ["error", "always"],
 
       "@typescript-eslint/unbound-method": ["error", {
           ignoreStatic: true,
@@ -183,7 +183,7 @@ module.exports = tseslint.config(
 
       "prefer-template": "error",
       quotes: ["error", "single"],
-      semi: ["error", "never"],
+      semi: ["error", "always"],
       "space-before-blocks": ["error", "always"],
       "space-before-function-paren": ["error", "never"],
       "space-in-parens": ["error", "never"],
