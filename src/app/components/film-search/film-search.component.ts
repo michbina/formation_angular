@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Film } from '@models/film';
 import { FilmComponent } from '@components/film/film.component';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-film-search',
@@ -9,9 +10,12 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './film-search.component.html',
   styleUrl: './film-search.component.scss'
 })
-export class FilmSearchComponent {
+export class FilmSearchComponent   {
+
 
   films:Film[]=[];
+
+  constructor(private router: Router) {}
 
   searchFilms() :Film[] {
   this.films = [
@@ -50,4 +54,6 @@ export class FilmSearchComponent {
   return this.films;
 
   };
+
+
 }

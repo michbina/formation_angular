@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -7,15 +8,19 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
-export class LoginFormComponent {
-  @Output() loggedIn = new EventEmitter<boolean>();
-
+export class LoginFormComponent  {
   title = 'Authentication';
   email = '';
   password = '';
 
+
+  @Output() loggedIn = new EventEmitter<boolean>();
+
+  constructor(private router: Router) {}
+
+
   login() {
-    this.loggedIn.emit(true);
+    this.router.navigateByUrl('/search') ;
   }
 
   starRating(metascore:string):string {

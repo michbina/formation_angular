@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LoginFormComponent } from '@components/login-form/login-form.component';
-import { RouterOutlet } from '@angular/router' ;
-import { FilmSearchComponent } from '@components/film-search/film-search.component';
+import { Router, RouterOutlet } from '@angular/router' ;
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,LoginFormComponent,FilmSearchComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   title = 'Search Films';
   loggedIn=false;
-  onLogin(loggedIn :boolean) {
-  this.loggedIn=loggedIn;
-  }
+
+  constructor(private router: Router) {}
+   ngOnInit(): void {
+     this.router.navigateByUrl('/login') ;
+   }
+
+
+
 
 }
