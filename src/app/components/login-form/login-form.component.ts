@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
-import { Film } from 'app/models/film'
+import { Film } from '@models/film'
+
 
 @Component({
   selector: 'app-login-form',
@@ -51,22 +52,20 @@ export class LoginFormComponent {
     }
   ]
 
-  starRating( metascore:string){
-    if(+metascore<20){
+  starRating(metascore:string):string {
+    if (+metascore<20) {
       return "★";
-    }else  if(+metascore<40){
+    }else  if (+metascore<40){
       return "★★";
-    }else  if(+metascore<60){
+    }else  if (+metascore<60) {
       return "★★★";
-    }else  if(+metascore<80) {
+    }else  if (+metascore<80) {
       return "★★★★";
-    }else  if(+metascore<100) {
+    }else  if (+metascore<100) {
       return "★★★★★";
-    }else  {
+    }else {
       return "no rating";
     }
-
-
   }
 
 }

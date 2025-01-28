@@ -141,7 +141,8 @@ module.exports = tseslint.config(
       "dot-location": ["error", "property"],
       "function-call-argument-newline": ["error", "consistent"],
       "func-call-spacing": ["error", "never"],
-      "linebreak-style": ["error", "unix"],
+      "linebreak-style": ["error", "windows"],
+      /*"linebreak-style": ["error", "unix"],*/
       "max-classes-per-file": ["error", 1],
 
       "max-len": ["error", {
