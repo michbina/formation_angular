@@ -1,4 +1,8 @@
 <h1>{{title}}</h1>
-<app-login-form></app-login-form>
+@if (!loggedIn) {
+<app-login-form (loggedIn)="onLogin($event)" ></app-login-form>
+}@else {
+<app-film-search ></app-film-search>
+}
 
 
