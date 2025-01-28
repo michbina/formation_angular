@@ -1,23 +1,16 @@
 import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { Film } from '@models/film'
+import { StarRatingPipe } from '@pipes/star-rating.pipe'
 
 
 @Component({
   selector: 'app-login-form',
-  imports: [FormsModule],
+  imports: [FormsModule, StarRatingPipe],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
-  title = 'Authentication'
-  email = ''
-  password = ''
-  loggedIn =false
-
-  login() {
-    this.loggedIn=true
-  }
 
   films: Film[] = [
     {
@@ -51,20 +44,28 @@ export class LoginFormComponent {
       metascore: '63'
     }
   ]
+  title = 'Authentication'
+  email = ''
+  password = ''
+  loggedIn =false
+
+  login() {
+    this.loggedIn=true
+  }
 
   starRating(metascore:string):string {
     if (+metascore<20) {
-      return "★";
-    }else  if (+metascore<40){
-      return "★★";
-    }else  if (+metascore<60) {
-      return "★★★";
-    }else  if (+metascore<80) {
-      return "★★★★";
-    }else  if (+metascore<100) {
-      return "★★★★★";
+      return '★'
+    }else if (+metascore<40) {
+       return '★'
+    }else if (+metascore<60) {
+      return '★★★'
+    }else if (+metascore<80) {
+      return '★★★★'
+    }else if (+metascore<100) {
+      return '★★★★★'
     }else {
-      return "no rating";
+      return 'no rating'
     }
   }
 
