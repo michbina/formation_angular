@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '@services/authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -16,10 +17,14 @@ export class LoginFormComponent  {
 
   @Output() loggedIn = new EventEmitter<boolean>();
 
-  constructor(private router: Router) {}
+  authService: AuthenticationService = inject(AuthenticationService);
 
+  constructor(private router: Router, private authenticationService:AuthenticationService) {
+
+  }
 
   login() {
+    this.authService.login();
     this.router.navigateByUrl('/search') ;
   }
 

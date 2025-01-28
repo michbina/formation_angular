@@ -1,4 +1,4 @@
+@if (this.authService.loggedIn) {
+<button (click)="this.authService.logout()" class="logout">Logout</button>
+}
 <router-outlet></router-outlet>
-
-
-
