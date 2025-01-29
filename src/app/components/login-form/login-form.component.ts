@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginRequest } from '@models/authentication/login-request';
@@ -16,6 +17,9 @@ export class LoginFormComponent {
   email = '';
   password = '';
 
+  //Tips: https://angular.fr/technical/destroy-ref#utilisation-hors-du-constructeur
+  private destroyRef = inject(DestroyRef);
+
 
   @Output() loggedIn = new EventEmitter<boolean>();
 
@@ -31,7 +35,7 @@ export class LoginFormComponent {
   }
 
   login(): void {
-    this.authenticationService.login(this.loginRequest)
+    this.authenticationService.login(this.loginRequest).pipe(takeUntilDestroyed(this.destroyRef))
   .subscribe({
     next: userResponse => {
       this.authenticationService.token = userResponse.token;

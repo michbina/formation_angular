@@ -4,10 +4,13 @@ import { FilmComponent } from '@components/film/film.component';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FilmService } from '@services/film/film.service';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-film-search',
-  imports: [FormsModule, FilmComponent],
+  imports: [FormsModule, FilmComponent,AsyncPipe ],
   templateUrl: './film-search.component.html',
   styleUrl: './film-search.component.scss'
 })
@@ -18,13 +21,19 @@ export class FilmSearchComponent {
 
   title:string;
 
+  films$:Observable<Film[]> | undefined;
+
 
   constructor(private router: Router, private filmService:FilmService) {
     this.title='';
   }
+//méthode avec pipe async
+  searchFilms(): void {
+    this.films$ = this.filmService.search(this.title);
+  }
 
-
-  searchFilms() {
+//méthode avec subscribe
+  /*searchFilms() {
     this.filmService.search(this.title).subscribe({
       next: (data: Film[]) => {
         this.films = data;
@@ -34,7 +43,7 @@ export class FilmSearchComponent {
       }
     });
 
-  }
+  }*/
 
 
  /* searchFilms() :Film[] {
