@@ -28,7 +28,7 @@ export class LoginFormComponent  {
     this.router.navigateByUrl('/search') ;
   }
 
-  starRating(metascore:string):string {
+  /*starRating(metascore:string):string {
     if (+metascore<20) {
       return '★';
     }else if (+metascore<40) {
@@ -42,6 +42,6 @@ export class LoginFormComponent  {
     }else {
       return 'no rating';
     }
-  }
+  }*/
 
 }

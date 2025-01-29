@@ -17,6 +17,7 @@ export class AuthenticationService {
 
   logout() {
     this.loggedIn=false;
+    this.router.navigateByUrl('/login') ;
   }
 
 
