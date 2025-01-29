@@ -1,19 +1,32 @@
 
 
-<form (ngSubmit)="login()" id="login-form">
+<form (ngSubmit)="login()" id="login-form" [formGroup]="loginForm">
   <h1>{{title}}</h1>
   <p>Fill out this form to login.</p>
 
   <label for="email">Email</label>
-  <input [(ngModel)]="email" type="text" placeholder="Enter your email" id="email" name="email" required/>
+  <!-- <input [(ngModel)]="email" type="text" placeholder="Enter your email" id="email" name="email"/> -->
+  <input formControlName="email" type="text" placeholder="Enter your email" id="email" name="email" required/>
+  @if(loginForm.get('email')?.hasError('required')){
+    <small>Ce champ est requis</small>
+  }
+
 
   <label for="psw">Password</label>
-  <input [(ngModel)]="password" type="password" placeholder="Enter your password" id="psw" name="password" required/>
+  <!-- <input [(ngModel)]="password" type="password" placeholder="Enter your password" id="psw" name="password"/> -->
+  <input formControlName="password" type="password" placeholder="Enter your password" id="psw" name="password" required/>
+  @if(loginForm.get('password')?.hasError('required')){
+    <small>Ce champ est requis</small>
+  }
 
-  <!-- <button type="submit">Login</button> -->
+
+  @if(loginForm.get('password')?.hasError('password.pattern')){
+    <small>Pattern not good</small>
+  }
+
+
   <div class="button-container">
-    <button (click)="register()" type="button">Register</button>
-    <button type="submit">Login</button>
+    <button (click)="register()" type="button" [disabled]="loginForm.invalid">Register</button>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
   </div>
 </form>
-

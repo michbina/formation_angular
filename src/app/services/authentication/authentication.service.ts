@@ -47,6 +47,7 @@ export class AuthenticationService {
 
   logout() {
     this.token = null;
+    this.router.navigateByUrl('/login');
   }
 
 
