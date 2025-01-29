@@ -10,6 +10,10 @@
   <label for="psw">Password</label>
   <input [(ngModel)]="password" type="password" placeholder="Enter your password" id="psw" name="password" required/>
 
-  <button type="submit">Login</button>
+  <!-- <button type="submit">Login</button> -->
+  <div class="button-container">
+    <button (click)="register()" type="button">Register</button>
+    <button type="submit">Login</button>
+  </div>
 </form>
 

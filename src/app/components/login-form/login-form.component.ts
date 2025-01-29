@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoginRequest } from '@models/authentication/login-request';
 import { AuthenticationService } from '@services/authentication.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { AuthenticationService } from '@services/authentication.service';
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
-export class LoginFormComponent  {
+export class LoginFormComponent {
   title = 'Authentication';
   email = '';
   password = '';
@@ -18,30 +20,42 @@ export class LoginFormComponent  {
   @Output() loggedIn = new EventEmitter<boolean>();
 
   authService: AuthenticationService = inject(AuthenticationService);
+  errorMessage: any=null;
 
-  constructor(private router: Router, private authenticationService:AuthenticationService) {
+  constructor(private router: Router, private route: ActivatedRoute, private authenticationService:AuthenticationService) {
 
   }
 
-  login() {
-    this.authService.login();
-    this.router.navigateByUrl('/search') ;
+  get loginRequest(): LoginRequest {
+    return new LoginRequest(this.email, this.password);
   }
 
-  /*starRating(metascore:string):string {
-    if (+metascore<20) {
-      return '★';
-    }else if (+metascore<40) {
-       return '★';
-    }else if (+metascore<60) {
-      return '★★★';
-    }else if (+metascore<80) {
-      return '★★★★';
-    }else if (+metascore<100) {
-      return '★★★★★';
-    }else {
-      return 'no rating';
-    }
-  }*/
+  login(): void {
+    this.authenticationService.login(this.loginRequest)
+  .subscribe({
+    next: userResponse => {
+      this.authenticationService.token = userResponse.token;
+      const returnUrl = this.route.snapshot.paramMap.get('returnUrl');
+      this.router.navigateByUrl(returnUrl ? `/${returnUrl}` : '');
+    },
+    error: errorResponse => {
+      this.errorHandler(errorResponse);
+     }
+  });
+
+  }
+
+  register(): void {
+    this.authenticationService.register(this.loginRequest)
+      .subscribe();
+  }
+
+  private errorHandler(errorResponse: HttpErrorResponse): void {
+    this.errorMessage = errorResponse.error.error ?? `${errorResponse.error.status} - ${errorResponse.error.statusText}`;
+  }
+
+
+
+
 
 }

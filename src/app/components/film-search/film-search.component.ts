@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Film } from '@models/film';
 import { FilmComponent } from '@components/film/film.component';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FilmService } from '@services/film.service';
 
 @Component({
   selector: 'app-film-search',
@@ -10,15 +11,21 @@ import { Router } from '@angular/router';
   templateUrl: './film-search.component.html',
   styleUrl: './film-search.component.scss'
 })
-export class FilmSearchComponent   {
+export class FilmSearchComponent {
 
 
   films:Film[]=[];
 
+  filmService: FilmService = inject(FilmService);
+
   constructor(private router: Router) {}
 
+  //filmService.search(title);
+
+
   searchFilms() :Film[] {
-  this.films = [
+  this.films =
+   [
     {
       title: 'Titanic',
       released: '19 Dec 1997',
