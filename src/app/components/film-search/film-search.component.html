@@ -1,6 +1,6 @@
 <form (ngSubmit)="searchFilms()">
   <label for="search">Search :</label>
-  <input id="search" type="text" name="title"/>
+  <input [(ngModel)]="title" placeholder="Search for a movie" id="search" type="text" name="title"/>
 </form>
 
 <ul class="films">

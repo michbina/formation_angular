@@ -3,7 +3,7 @@ import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginRequest } from '@models/authentication/login-request';
-import { AuthenticationService } from '@services/authentication.service';
+import { AuthenticationService } from '@services/authentication/authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -53,9 +53,6 @@ export class LoginFormComponent {
   private errorHandler(errorResponse: HttpErrorResponse): void {
     this.errorMessage = errorResponse.error.error ?? `${errorResponse.error.status} - ${errorResponse.error.statusText}`;
   }
-
-
-
 
 
 }

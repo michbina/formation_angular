@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router' ;
-import { AuthenticationService } from '@services/authentication.service';
+import { AuthenticationService } from '@services/authentication/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +15,10 @@ export class AppComponent implements OnInit {
 
   authService: AuthenticationService = inject(AuthenticationService);
 
-
-
-
   constructor(private router: Router, private authenticationService: AuthenticationService) {}
-
 
    ngOnInit(): void {
      this.router.navigateByUrl('/login');
-   }
-
-
-
+   };
 
 }

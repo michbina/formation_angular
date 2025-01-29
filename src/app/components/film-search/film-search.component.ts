@@ -3,7 +3,7 @@ import { Film } from '@models/film';
 import { FilmComponent } from '@components/film/film.component';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FilmService } from '@services/film.service';
+import { FilmService } from '@services/film/film.service';
 
 @Component({
   selector: 'app-film-search',
@@ -16,14 +16,28 @@ export class FilmSearchComponent {
 
   films:Film[]=[];
 
-  filmService: FilmService = inject(FilmService);
-
-  constructor(private router: Router) {}
-
-  //filmService.search(title);
+  title:string;
 
 
-  searchFilms() :Film[] {
+  constructor(private router: Router, private filmService:FilmService) {
+    this.title='';
+  }
+
+
+  searchFilms() {
+    this.filmService.search(this.title).subscribe({
+      next: (data: Film[]) => {
+        this.films = data;
+      },
+      error: error => {
+        console.error('Erreur searchFilms:', error);
+      }
+    });
+
+  }
+
+
+ /* searchFilms() :Film[] {
   this.films =
    [
     {
@@ -60,7 +74,7 @@ export class FilmSearchComponent {
 
   return this.films;
 
-  };
+  };*/
 
 
 }
