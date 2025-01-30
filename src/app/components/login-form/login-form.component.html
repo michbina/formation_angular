@@ -19,10 +19,9 @@
     <small>Ce champ est requis</small>
   }
 
-
-  @if(loginForm.get('password')?.hasError('password.pattern')){
-    <small>Pattern not good</small>
-  }
+  @if(loginForm.get("password")?.hasError('password.pattern')) {
+    <small>{{loginForm.get('password')?.getError('password.pattern')}}</small>
+}
 
 
   <div class="button-container">
